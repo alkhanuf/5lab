@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            pbMain = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pbMain).BeginInit();
+            SuspendLayout();
+            // 
+            // pbMain
+            // 
+            pbMain.Location = new Point(12, 12);
+            pbMain.Name = "pbMain";
+            pbMain.Size = new Size(952, 611);
+            pbMain.TabIndex = 0;
+            pbMain.TabStop = false;
+            pbMain.Paint += pbMain_Paint;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(976, 635);
+            Controls.Add(pbMain);
+            Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)pbMain).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private PictureBox pbMain;
     }
 }
