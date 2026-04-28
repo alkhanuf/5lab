@@ -116,6 +116,17 @@ namespace _5lab
             int newX = rand.Next(50, pbMain.Width - 50);
             int newY = rand.Next(50, pbMain.Height - 50);
             Target newTarget = new Target(newX, newY, 0);
+
+            newTarget.OnSizeZero += (t) =>
+            {
+
+                int newXpos = rand.Next(50, pbMain.Width - 50);
+                int newYpos = rand.Next(50, pbMain.Height - 50);
+                newTarget.Radius = 20f;
+                newTarget.X = newXpos;
+                newTarget.Y = newYpos;
+             };
+
             objects.Add(newTarget);
         }
     }

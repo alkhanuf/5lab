@@ -15,14 +15,14 @@ namespace _5lab.Objects
 
         public override void Render(Graphics g)
         {
+            g.FillEllipse(new SolidBrush(Color.LightGreen), -Radius, -Radius, Radius * 2, Radius * 2);
+
+            Radius -= 0.1f;
+
             if (Radius <= 0)
             {
-                return;
+                OnSizeZero(this);
             }
-
-
-            g.FillEllipse(new SolidBrush(Color.Green), -15, -15, 30, 30);
-            
         }
 
         public override GraphicsPath GetGraphicsPath()
@@ -31,5 +31,6 @@ namespace _5lab.Objects
             path.AddEllipse(-15, -15, 30, 30);
             return path;
         }
+
     }
 }
