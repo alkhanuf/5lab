@@ -8,6 +8,8 @@ namespace _5lab
         Player player;
         Marker marker;
         List<BaseObject> objects = new();
+        Random rand = new Random();
+        int score = 0;
         public Form1()
         {
             InitializeComponent();
@@ -31,8 +33,27 @@ namespace _5lab
             objects.Add(player);
             objects.Add(marker);
 
-            objects.Add(new MyRectangle(50, 50, 0));
-            objects.Add(new MyRectangle(200, 200, 90));
+            for (int i = 0; i < 2; i++)
+            {
+                int randomX = rand.Next(50, pbMain.Width - 50);
+                int randomY = rand.Next(50, pbMain.Height - 50);
+                Target target = new Target(randomX, randomY, 0);
+                objects.Add(target);
+            }
+
+            player.OnTargetOverlap += (t) =>
+            {
+                objects.Remove(t);
+
+                score++;
+                lblScore.Text = $"Очки: {score}";
+
+
+                int newX = rand.Next(50, pbMain.Width - 50);
+                int newY = rand.Next(50, pbMain.Height - 50);
+                Target newTarget = new Target(newX, newY, 0);
+                objects.Add(newTarget);
+            };
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
