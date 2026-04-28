@@ -35,10 +35,7 @@ namespace _5lab
 
             for (int i = 0; i < 2; i++)
             {
-                int randomX = rand.Next(50, pbMain.Width - 50);
-                int randomY = rand.Next(50, pbMain.Height - 50);
-                Target target = new Target(randomX, randomY, 0);
-                objects.Add(target);
+                createTarget();
             }
 
             player.OnTargetOverlap += (t) =>
@@ -48,11 +45,7 @@ namespace _5lab
                 score++;
                 lblScore.Text = $"Очки: {score}";
 
-
-                int newX = rand.Next(50, pbMain.Width - 50);
-                int newY = rand.Next(50, pbMain.Height - 50);
-                Target newTarget = new Target(newX, newY, 0);
-                objects.Add(newTarget);
+                createTarget();
             };
         }
 
@@ -88,8 +81,8 @@ namespace _5lab
                 dx /= length;
                 dy /= length;
 
-                player.vX += dx * 0.5f;
-                player.vY += dy * 0.5f;
+                player.vX += dx * 0.7f;
+                player.vY += dy * 0.7f;
 
                 player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI;
             }
@@ -116,6 +109,14 @@ namespace _5lab
 
             marker.X = e.X;
             marker.Y = e.Y;
+        }
+
+        private void createTarget()
+        {
+            int newX = rand.Next(50, pbMain.Width - 50);
+            int newY = rand.Next(50, pbMain.Height - 50);
+            Target newTarget = new Target(newX, newY, 0);
+            objects.Add(newTarget);
         }
     }
 }
